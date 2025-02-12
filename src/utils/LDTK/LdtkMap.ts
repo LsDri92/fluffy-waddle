@@ -6,7 +6,7 @@ export class LdtkMap extends Container {
 	public static readonly BUNDLES = ["package-1"];
 	public mapData: ILDtkMap;
 	private tilesetTextures: Map<number, BaseTexture> = new Map();
-	private waveTiles: Sprite[] = [];
+	public waveTiles: Sprite[] = [];
 	
 	constructor(mapData: ILDtkMap) {
 		super();
@@ -61,10 +61,11 @@ export class LdtkMap extends Container {
 			const tileTexture = GetTileTexture(baseTexture, tile.src[0], tile.src[1], layer.__gridSize, layer.__gridSize);
 			const tileSprite = new Sprite(tileTexture);
 			tileSprite.position.set(tile.px[0], tile.px[1]);
-			parent.addChild(tileSprite);
-
+			
 			if (isWaveLayer) {
 				this.waveTiles.push(tileSprite);
+			} else {
+				parent.addChild(tileSprite);
 			}
 		});
 	

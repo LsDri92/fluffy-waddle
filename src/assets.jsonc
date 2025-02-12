@@ -76,7 +76,8 @@
 				"ship1": "./img/big_placeholder/ship1.png",
 				"ship2": "./img/big_placeholder/ship2.png",
 				"ship3": "./img/big_placeholder/ship3.png",
-				"ship4": "./img/big_placeholder/ship4.png"
+				"ship4": "./img/big_placeholder/ship4.png",
+				"waves": "./img/big_placeholder/Level_0__Waves.png"
 			}
 		},
 		{

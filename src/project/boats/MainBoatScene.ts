@@ -1,4 +1,4 @@
-import { Container, Graphics, Point } from "pixi.js";
+import { Container, Graphics, Point, Texture, TilingSprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { Boat } from "./Boat";
 import { Timer } from "../../engine/tweens/Timer";
@@ -32,6 +32,7 @@ export class MainBoatScene extends PixiScene {
 	private start: boolean = false;
 	private map: LdtkMap;
 	private gameContainer: Container = new Container();
+	private tilingWaves: TilingSprite;
 
 	constructor() {
 		super();
@@ -102,8 +103,9 @@ export class MainBoatScene extends PixiScene {
 
 		this.boats.push(this.boat, this.boat1, this.boat2, this.boat3);
 
+		this.tilingWaves = new TilingSprite(Texture.from("waves"), 1280, 720);
 		this.gameContainer.sortableChildren = true;
-		this.gameContainer.addChild(this.map, this.boat, this.boat1, this.boat2, this.boat3);
+		this.gameContainer.addChild(this.tilingWaves, this.map, this.boat, this.boat1, this.boat2, this.boat3);
 
 		const countdown = new Timer();
 		countdown
@@ -115,6 +117,8 @@ export class MainBoatScene extends PixiScene {
 	}
 
 	public override update(_dt: number): void {
+		this.tilingWaves.tilePosition.x -= 0.1 * _dt; 
+		// this.tilingWaves.tilePosition.y -= 0.1 * _dt; 
 		if (this.start) {
 			this.boats.forEach((boat, index) => {
 				boat.moveTowardTarget(this.targetPosition[this.currentTargetIndex[index]], _dt);
