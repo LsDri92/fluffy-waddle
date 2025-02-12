@@ -69,8 +69,14 @@
 			"name": "package-1",
 			"assets": {
 				"package 1 background": "./img/big_placeholder/background-1.jpg",
+				"tilesheet": "./img/big_placeholder/tiles_sheet.png",
+				"backgr": "./img/big_placeholder/AutoLayer_baked.png",
 				"big_background": "./img/big_placeholder/bg_game.png",
-				"mask_demo": "./img/big_placeholder/mask_demo@0.5x.png" // @0.5x means 50% of the original size, pixi will internally upscale and you will never know!
+				"mask_demo": "./img/big_placeholder/mask_demo@0.5x.png", // @0.5x means 50% of the original size, pixi will internally upscale and you will never know!
+				"ship1": "./img/big_placeholder/ship1.png",
+				"ship2": "./img/big_placeholder/ship2.png",
+				"ship3": "./img/big_placeholder/ship3.png",
+				"ship4": "./img/big_placeholder/ship4.png"
 			}
 		},
 		{

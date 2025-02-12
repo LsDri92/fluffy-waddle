@@ -38,10 +38,10 @@ export class UIComponent extends Container {
 		for (const child of children) {
 			if (this.direction === "row") {
 				child.position.set(startOffset + offset, 0);
-				offset += (child.width as number) + this.spacing;
+				offset += child.width + this.spacing;
 			} else {
 				child.position.set(0, startOffset + offset);
-				offset += (child.height as number) + this.spacing;
+				offset += child.height + this.spacing;
 			}
 		}
 	}

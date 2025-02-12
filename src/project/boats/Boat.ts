@@ -1,4 +1,4 @@
-import { Container, Graphics, Point, Text } from "pixi.js";
+import { Container, Point, Sprite, Text } from "pixi.js";
 
 export class Boat extends Container {
 	private maxSpeed: number;
@@ -7,12 +7,12 @@ export class Boat extends Container {
 	private velSmoothTime: number;
 	public currentSpeed: number;
 
-	public boat: Graphics;
+	public boat: Sprite;
 	public turnsSmooth: number;
 	private turnVelocity = { value: 0 };
 	private vel = { value: 0 };
 
-	constructor(maxSpeed: number, acceleration: number, deceleration: number, velSmoothTime: number, turnSmooth: number, player: number) {
+	constructor(maxSpeed: number, acceleration: number, deceleration: number, velSmoothTime: number, turnSmooth: number, player: number, sprite: string) {
 		super();
 		this.currentSpeed = 0;
 		this.maxSpeed = maxSpeed * 0.001;
@@ -20,46 +20,27 @@ export class Boat extends Container {
 		this.dece = deceleration * 0.001;
 		this.velSmoothTime = velSmoothTime * 0.001;
 		this.turnsSmooth = turnSmooth;
-		
-		this.boat = new Graphics();
-		switch (player) {
-			case 1:
-				this.boat.beginFill(0x00ff00, 0.8);
-				
-				break;
-				case 2:
-					this.boat.beginFill(0xff0000, 0.8);
-					break;
-					case 3:
-						this.boat.beginFill(0x0000ff, 0.8);
-						break;
-						case 4:
-							this.boat.beginFill(0xffffff, 0.8);
-							break;
 
-							default:
-								break;
-							}
-							
-							this.boat.drawRect(0, 0, 50, 20);
-							this.boat.endFill();
-							const text = new Text(player.toString())
-							text.position.set(this.boat.x, this.boat.y);
+		this.boat = Sprite.from(sprite);
+		this.boat.angle = -90;
+		this.boat.scale.set(0.5);
+		const text = new Text(player.toString());
+		text.position.set(this.boat.x, this.boat.y);
+
 		this.addChild(this.boat, text);
 	}
 
 	public turnBoat(targetPosition: Point, dt: number): void {
 		const pointToTarget = new Point(targetPosition.x - this.position.x, targetPosition.y - this.position.y);
 		const angleToTarget = Math.atan2(pointToTarget.y, pointToTarget.x); // Calcula el ángulo objetivo
-	
+
 		// Asegura que el bote gire en la dirección más corta
 		let deltaAngle = angleToTarget - this.rotation;
 		deltaAngle = ((deltaAngle + Math.PI) % (2 * Math.PI)) - Math.PI; // Mantiene el ángulo en [-π, π]
-	
+
 		// Aplica suavizado asegurando que el bote no sobrepase el ángulo objetivo
 		this.rotation = this.smoothDampAngle(this.rotation, this.rotation + deltaAngle, this.turnVelocity, this.turnsSmooth, dt);
 	}
-	
 
 	public moveTowardTarget(targetPosition: Point, deltaTime: number): number {
 		this.turnBoat(targetPosition, deltaTime);
