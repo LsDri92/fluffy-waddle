@@ -1,0 +1,81 @@
+{
+	"identifier": "Level_0",
+	"uniqueIdentifer": "7fe56f80-c210-11ef-bcba-41ed862337cc",
+	"x": 0,
+	"y": 0,
+	"width": 1280,
+	"height": 720,
+	"bgColor": "#696A79",
+	"neighbourLevels": [],
+	"customFields" : {},
+	"layers": [
+		"Waves.png",
+		"AutoLayer_baked.png",
+		"Checkpoints.png",
+		"Obstacles.png"
+	],
+	"entities": {
+		"Start_Point": [
+			{
+				"id": "Start_Point",
+				"iid": "b9732640-c210-11ef-bcba-b59b98630544",
+				"layer": "Entities",
+				"x": 56,
+				"y": 184,
+				"width": 16,
+				"height": 16,
+				"color": 12470831,
+				"customFields" : {}
+			}
+		],
+		"EndPoint": [
+			{
+				"id": "EndPoint",
+				"iid": "c1548390-c210-11ef-bcba-25eb622bd4a2",
+				"layer": "Entities",
+				"x": 8,
+				"y": 712,
+				"width": 16,
+				"height": 16,
+				"color": 14120515,
+				"customFields" : {}
+			}
+		],
+		"PathPoints": [
+			{
+				"id": "PathPoints",
+				"iid": "0890c020-c210-11ef-bcba-b3982c088153",
+				"layer": "Entities",
+				"x": 1032,
+				"y": 296,
+				"width": 16,
+				"height": 16,
+				"color": 15389866,
+				"customFields": {
+					"Point": [
+						{
+							"cx": 75,
+							"cy": 27
+						},
+						{
+							"cx": 12,
+							"cy": 27
+						},
+						{
+							"cx": 26,
+							"cy": 37
+						},
+						{
+							"cx": 74,
+							"cy": 37
+						},
+						{
+							"cx": 6,
+							"cy": 20
+						}
+					]
+				}
+			}
+		]
+	}
+}

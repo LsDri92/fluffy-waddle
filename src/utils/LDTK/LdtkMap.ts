@@ -7,7 +7,7 @@ export class LdtkMap extends Container {
 	public mapData: ILDtkMap;
 	private tilesetTextures: Map<number, BaseTexture> = new Map();
 	public waveTiles: Sprite[] = [];
-	
+
 	constructor(mapData: ILDtkMap) {
 		super();
 		this.mapData = mapData;
@@ -21,7 +21,6 @@ export class LdtkMap extends Container {
 			this.tilesetTextures.set(tileset.uid, baseTexture);
 		});
 	}
-
 
 	private loadLevels(): void {
 		this.mapData.levels.forEach((level) => {
@@ -45,7 +44,6 @@ export class LdtkMap extends Container {
 		this.addChild(levelContainer);
 	}
 
-
 	private createTileLayer(parent: Container, layer: LayerInstance): void {
 		if (!layer.__tilesetDefUid) {
 			return;
@@ -54,23 +52,21 @@ export class LdtkMap extends Container {
 		if (!baseTexture) {
 			return;
 		}
-	
+
 		const isWaveLayer = layer.__identifier === "Waves";
-	
+
 		layer.gridTiles?.forEach((tile) => {
 			const tileTexture = GetTileTexture(baseTexture, tile.src[0], tile.src[1], layer.__gridSize, layer.__gridSize);
 			const tileSprite = new Sprite(tileTexture);
 			tileSprite.position.set(tile.px[0], tile.px[1]);
-			
+
 			if (isWaveLayer) {
 				this.waveTiles.push(tileSprite);
 			} else {
 				parent.addChild(tileSprite);
 			}
 		});
-	
 	}
-
 
 	private createEntities(parent: Container, layer: LayerInstance): void {
 		layer.entityInstances?.forEach((entity) => {
@@ -81,29 +77,29 @@ export class LdtkMap extends Container {
 			switch (entity.__identifier) {
 				case "Start_Point":
 					entitySprite.beginFill(0xff0000);
-					entitySprite.drawCircle(0,0,5);
+					entitySprite.drawCircle(0, 0, 5);
 					entitySprite.endFill();
 					entitySprite.position.set(entity.px[0], entity.px[1]);
 					break;
 
 				case "EndPoint":
 					entitySprite.beginFill(0xffff00);
-					entitySprite.drawCircle(0,0,5);
+					entitySprite.drawCircle(0, 0, 5);
 					entitySprite.endFill();
 					entitySprite.position.set(entity.px[0], entity.px[1]);
 					break;
 
 				case "PathPoints":
 					entitySprite.beginFill(0xff00ff);
-					entitySprite.drawCircle(0,0,5);
+					entitySprite.drawCircle(0, 0, 5);
 					entitySprite.endFill();
 					entitySprite.position.set(entity.px[0], entity.px[1]);
 					break;
-					
-					default:
-						break;
-					}
-					parent.addChild(entitySprite);
+
+				default:
+					break;
+			}
+			parent.addChild(entitySprite);
 		});
 	}
 }

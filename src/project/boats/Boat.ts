@@ -1,4 +1,5 @@
 import { Container, Point, Sprite, Text } from "pixi.js";
+import { HitPoly } from "../../engine/collision/HitPoly";
 
 export class Boat extends Container {
 	private maxSpeed: number;
@@ -11,15 +12,20 @@ export class Boat extends Container {
 	public turnsSmooth: number;
 	private turnVelocity = { value: 0 };
 	private vel = { value: 0 };
+	public hitbox: HitPoly;
+
+	public id: number;
 
 	constructor(maxSpeed: number, acceleration: number, deceleration: number, velSmoothTime: number, turnSmooth: number, player: number, sprite: string) {
 		super();
+		this.id = player;
 		this.currentSpeed = 0;
 		this.maxSpeed = maxSpeed * 0.001;
 		this.acce = acceleration * 0.001;
 		this.dece = deceleration * 0.001;
-		this.velSmoothTime = velSmoothTime * 0.001;
+		this.velSmoothTime = velSmoothTime * 0.01;
 		this.turnsSmooth = turnSmooth;
+		this.rotation = -5;
 
 		this.boat = Sprite.from(sprite);
 		this.boat.angle = -90;
@@ -27,7 +33,11 @@ export class Boat extends Container {
 		const text = new Text(player.toString());
 		text.position.set(this.boat.x, this.boat.y);
 
-		this.addChild(this.boat, text);
+		this.x = -15;
+		this.boat.x = this.x;
+		this.hitbox = HitPoly.makeBox(this.boat.x, this.boat.y, this.boat.width, this.boat.height);
+		this.hitbox.angle = this.boat.angle;
+		this.addChild(this.boat, this.hitbox, text);
 	}
 
 	public turnBoat(targetPosition: Point, dt: number): void {
@@ -57,19 +67,17 @@ export class Boat extends Container {
 		const targetSpeed = Math.min(Math.max(distanceToTarget, 0), this.maxSpeed);
 		this.currentSpeed = this.smoothDamp(this.currentSpeed, targetSpeed, this.vel, this.velSmoothTime, deltaTime);
 
+		if (distanceToTarget > 250) {
+			this.currentSpeed += (this.acce * deltaTime) / 30;
+		} else if (distanceToTarget < 250) {
+			this.currentSpeed -= (this.dece * deltaTime) / 30;
+		}
+
 		this.position.x += Math.cos(this.rotation) * this.currentSpeed * deltaTime;
 		this.position.y += Math.sin(this.rotation) * this.currentSpeed * deltaTime;
 
 		return this.currentSpeed;
 	}
-
-	// private normalizeVector(point: Point): Point {
-	// 	const length = Math.sqrt(point.x * point.x + point.y * point.y);
-	// 	if (length !== 0) {
-	// 		return new Point(point.x / length, point.y / length);
-	// 	}
-	// 	return new Point(0, 0);
-	// }
 
 	private smoothDampAngle(current: number, target: number, currentVelocity: { value: number }, smoothTime: number, deltaTime: number): number {
 		const pi2 = Math.PI * 2;
