@@ -6,21 +6,14 @@ import { Timer } from "../../engine/tweens/Timer";
 import Random from "../../engine/random/Random";
 import { LdtkMap } from "../../utils/LDTK/LdtkMap";
 import rawData from "../tracks/track1.json";
-import type { ILDtkMap, TileData, EntityInstance, LayerInstance, LevelData } from "../../utils/LDTK/LDTKJson";
+import entData from "../tracks/track1/simplified/Level_0/data.json"
+import { type ILDtkMap, parseLDtkJson } from "../../utils/LDTK/LDTKJson";
 import { Hit } from "../../engine/collision/Hit";
 import { HitPoly } from "../../engine/collision/HitPoly";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
+import { fromJSON } from "../../utils/LDTK/EntitiesCreator";
 
-export interface Coordinate {
-	cx: number;
-	cy: number;
-}
 
-export interface FieldInstance {
-	__identifier: string;
-	__type: string;
-	__value: Coordinate[];
-}
 export class MainBoatScene extends PixiScene {
 	public static readonly BUNDLES = ["package-1"];
 
@@ -41,63 +34,28 @@ export class MainBoatScene extends PixiScene {
 
 	constructor() {
 		super();
-
-		function parseLDtkJson(raw: any): ILDtkMap {
-			return {
-				...raw,
-				levels: raw.levels.map((level: any) => ({
-					...level,
-					layerInstances: level.layerInstances?.map((layer: any) => ({
-						...layer,
-						gridTiles: layer.gridTiles?.map((tile: any) => ({
-							...tile,
-							px: [tile.px[0] || 0, tile.px[1] || 0] as [number, number],
-							src: [tile.src[0] || 0, tile.src[1] || 0] as [number, number],
-						})) as TileData[],
-						entityInstances: layer.entityInstances?.map((entity: any) => ({
-							...entity,
-							__grid: [entity.__grid[0] || 0, entity.__grid[1] || 0] as [number, number],
-							px: [entity.px[0] || 0, entity.px[1] || 0] as [number, number],
-						})) as EntityInstance[],
-					})) as LayerInstance[],
-				})) as LevelData[],
-			};
-		}
+		
+		this.addChild(this.gameContainer);
 
 		const parsedMap: ILDtkMap = parseLDtkJson(rawData);
 
 		this.map = new LdtkMap(parsedMap);
+		const startPoint = fromJSON(entData.entities.Start_Point[0])
+		const targetPoint = fromJSON(entData.entities.PathPoints[0])
+		console.log(targetPoint.customFields.Point);
 
-		this.addChild(this.gameContainer);
 		this.startPosition = new Point(
-			this.map.mapData.levels[0].layerInstances[0].entityInstances[0].__worldX,
-			this.map.mapData.levels[0].layerInstances[0].entityInstances[0].__worldY
+			startPoint.x,
+			startPoint.y
 		);
+
+		for (let i = 0; i < targetPoint.customFields.Point.length; i++) {
+			this.targetPosition.push(new Point(targetPoint.customFields.Point[i].cx * targetPoint.width, targetPoint.customFields.Point[i].cy * targetPoint.height));
+		}
+		
 		this.waypointRadius = 100;
 
-		this.targetPosition = [
-			new Point(this.map.mapData.levels[0].layerInstances[0].entityInstances[2].px[0], this.map.mapData.levels[0].layerInstances[0].entityInstances[2].px[1]),
-			new Point(
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[0].cx * 16,
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[0].cy * 16
-			),
-			new Point(
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[1].cx * 16,
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[1].cy * 16
-			),
-			new Point(
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[2].cx * 16,
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[2].cy * 16
-			),
-			new Point(
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[3].cx * 16,
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[3].cy * 16
-			),
-			new Point(
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[4].cx * 16,
-				this.map.mapData.levels[0].layerInstances[0].entityInstances[2].fieldInstances[0].__value[4].cy * 16
-			),
-		];
+
 
 		this.targetPosition.forEach((target) => {
 			const aux = new Graphics();
@@ -109,16 +67,16 @@ export class MainBoatScene extends PixiScene {
 			this.map.addChild(aux);
 		});
 
-		this.boat = new Boat(100, 2, 2, 100, 500, 1, "ship1");
+		this.boat = new Boat(150, 3, 0.1, 500, 1, "ship1");
 		this.boat.position.set(this.startPosition.x, this.startPosition.y);
 
-		this.boat1 = new Boat(100, 5, 5, 200, 550, 2, "ship2");
+		this.boat1 = new Boat(180, 2, 0.1,  550, 2, "ship2");
 		this.boat1.position.set(this.startPosition.x + 80, this.startPosition.y);
 
-		this.boat2 = new Boat(100, 3, 6, 500, 580, 3, "ship3");
+		this.boat2 = new Boat(130, 7, 0.1,  580, 3, "ship3");
 		this.boat2.position.set(this.startPosition.x + 160, this.startPosition.y);
 
-		this.boat3 = new Boat(100, 2, 2, 300, 650, 4, "ship4");
+		this.boat3 = new Boat(120, 10, 0.1, 650, 4, "ship4");
 		this.boat3.position.set(this.startPosition.x + 240, this.startPosition.y);
 
 		this.boats.push(this.boat, this.boat1, this.boat2, this.boat3);

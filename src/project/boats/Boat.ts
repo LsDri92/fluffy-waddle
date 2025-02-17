@@ -5,37 +5,34 @@ export class Boat extends Container {
 	private maxSpeed: number;
 	public acce: number;
 	public dece: number;
-	private velSmoothTime: number;
 	public currentSpeed: number;
 
 	public boat: Sprite;
 	public turnsSmooth: number;
 	private turnVelocity = { value: 0 };
-	private vel = { value: 0 };
 	public hitbox: HitPoly;
 
 	public id: number;
 
-	constructor(maxSpeed: number, acceleration: number, deceleration: number, velSmoothTime: number, turnSmooth: number, player: number, sprite: string) {
+	constructor(maxSpeed: number, acceleration: number, deceleration: number, turnSmooth: number, player: number, sprite: string) {
 		super();
 		this.id = player;
 		this.currentSpeed = 0;
 		this.maxSpeed = maxSpeed * 0.001;
 		this.acce = acceleration * 0.001;
 		this.dece = deceleration * 0.001;
-		this.velSmoothTime = velSmoothTime * 0.01;
 		this.turnsSmooth = turnSmooth;
 		this.rotation = -5;
 
 		this.boat = Sprite.from(sprite);
 		this.boat.angle = -90;
 		this.boat.scale.set(0.5);
+		this.boat.anchor.x = 0.5;
+		this.boat.anchor.y = 0.;
 		const text = new Text(player.toString());
 		text.position.set(this.boat.x, this.boat.y);
 
-		this.x = -15;
-		this.boat.x = this.x;
-		this.hitbox = HitPoly.makeBox(this.boat.x, this.boat.y, this.boat.width, this.boat.height);
+		this.hitbox = HitPoly.makeBox(this.boat.x - this.boat.width * 0.5, this.boat.y, this.boat.width, this.boat.height);
 		this.hitbox.angle = this.boat.angle;
 		this.addChild(this.boat, this.hitbox, text);
 	}
@@ -51,33 +48,39 @@ export class Boat extends Container {
 		// Aplica suavizado asegurando que el bote no sobrepase el ángulo objetivo
 		this.rotation = this.smoothDampAngle(this.rotation, this.rotation + deltaAngle, this.turnVelocity, this.turnsSmooth, dt);
 	}
-
 	public moveTowardTarget(targetPosition: Point, deltaTime: number): number {
+		// Actualiza la rotación para que el bote apunte hacia el objetivo.
 		this.turnBoat(targetPosition, deltaTime);
-
-		const vectorToTarget = new Point(targetPosition.x - this.position.x, targetPosition.y - this.position.y);
-		const distanceToTarget = Math.sqrt(vectorToTarget.x ** 2 + vectorToTarget.y ** 2);
-
-		const magnitude = Math.sqrt(vectorToTarget.x ** 2 + vectorToTarget.y ** 2);
-		if (magnitude > 0) {
-			vectorToTarget.x /= magnitude;
-			vectorToTarget.y /= magnitude;
+	
+		// Calcula el vector y la distancia al objetivo.
+		const dx = targetPosition.x - this.position.x;
+		const dy = targetPosition.y - this.position.y;
+		const distanceToTarget = Math.sqrt(dx * dx + dy * dy);
+	
+		// Definir un umbral a partir del cual se acelera o desacelera.
+		const threshold = 250;
+	
+		// Actualiza la velocidad actual:
+		// Si el bote está lejos, se acelera; si está cerca, se desacelera.
+		if (distanceToTarget > threshold) {
+			// Acelera incrementando currentSpeed según acce y deltaTime.
+			this.currentSpeed += this.acce * deltaTime / 60;
+		} else {
+			// Desacelera disminuyendo currentSpeed según dece y deltaTime.
+			this.currentSpeed -= this.dece * deltaTime/ 60;
 		}
-
-		const targetSpeed = Math.min(Math.max(distanceToTarget, 0), this.maxSpeed);
-		this.currentSpeed = this.smoothDamp(this.currentSpeed, targetSpeed, this.vel, this.velSmoothTime, deltaTime);
-
-		if (distanceToTarget > 250) {
-			this.currentSpeed += (this.acce * deltaTime) / 30;
-		} else if (distanceToTarget < 250) {
-			this.currentSpeed -= (this.dece * deltaTime) / 30;
-		}
-
+		
+		// Limita la velocidad entre 0 y maxSpeed.
+		if (this.currentSpeed < this.maxSpeed * 0.4) this.currentSpeed += this.acce * deltaTime / 60
+		if (this.currentSpeed > this.maxSpeed) this.currentSpeed = this.maxSpeed;
+	
+		// Actualiza la posición del bote basándose en su rotación (la dirección se obtiene de Math.cos y Math.sin)
 		this.position.x += Math.cos(this.rotation) * this.currentSpeed * deltaTime;
 		this.position.y += Math.sin(this.rotation) * this.currentSpeed * deltaTime;
-
+	
 		return this.currentSpeed;
 	}
+	
 
 	private smoothDampAngle(current: number, target: number, currentVelocity: { value: number }, smoothTime: number, deltaTime: number): number {
 		const pi2 = Math.PI * 2;

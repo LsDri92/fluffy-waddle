@@ -159,5 +159,33 @@ export interface EntityInstance {
 export interface FieldInstance {
 	__identifier: string;
 	__type: string;
-	__value: any;
+	__value: Coordinate[];
+}
+
+export interface Coordinate {
+	cx: number;
+	cy: number;
+}
+
+
+export function parseLDtkJson(raw: any): ILDtkMap {
+	return {
+		...raw,
+		levels: raw.levels.map((level: any) => ({
+			...level,
+			layerInstances: level.layerInstances?.map((layer: any) => ({
+				...layer,
+				gridTiles: layer.gridTiles?.map((tile: any) => ({
+					...tile,
+					px: [tile.px[0] || 0, tile.px[1] || 0] as [number, number],
+					src: [tile.src[0] || 0, tile.src[1] || 0] as [number, number],
+				})) as TileData[],
+				entityInstances: layer.entityInstances?.map((entity: any) => ({
+					...entity,
+					__grid: [entity.__grid[0] || 0, entity.__grid[1] || 0] as [number, number],
+					px: [entity.px[0] || 0, entity.px[1] || 0] as [number, number],
+				})) as EntityInstance[],
+			})) as LayerInstance[],
+		})) as LevelData[],
+	};
 }
