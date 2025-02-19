@@ -6,25 +6,20 @@ import { Timer } from "../../engine/tweens/Timer";
 import Random from "../../engine/random/Random";
 import { LdtkMap } from "../../utils/LDTK/LdtkMap";
 import rawData from "../tracks/track1.json";
-import entData from "../tracks/track1/simplified/Level_0/data.json"
+import entData from "../tracks/track1/simplified/Level_0/data.json";
 import { type ILDtkMap, parseLDtkJson } from "../../utils/LDTK/LDTKJson";
 import { Hit } from "../../engine/collision/Hit";
 import { HitPoly } from "../../engine/collision/HitPoly";
 import { ScaleHelper } from "../../engine/utils/ScaleHelper";
-import { fromJSON } from "../../utils/LDTK/EntitiesCreator";
-
+import { ldtkSimpleJSON } from "../../utils/LDTK/EntitiesCreator";
 
 export class MainBoatScene extends PixiScene {
 	public static readonly BUNDLES = ["package-1"];
 
-	private boat: Boat;
 	private targetPosition: Array<Point> = [];
 	private startPosition: Point;
 	private currentTargetIndex: Array<number> = [0, 0, 0, 0];
 	private waypointRadius: number;
-	private boat1: Boat;
-	private boat2: Boat;
-	private boat3: Boat;
 	private boats: Array<Boat> = [];
 	private start: boolean = false;
 	private map: LdtkMap;
@@ -34,28 +29,23 @@ export class MainBoatScene extends PixiScene {
 
 	constructor() {
 		super();
-		
+
 		this.addChild(this.gameContainer);
 
 		const parsedMap: ILDtkMap = parseLDtkJson(rawData);
 
 		this.map = new LdtkMap(parsedMap);
-		const startPoint = fromJSON(entData.entities.Start_Point[0])
-		const targetPoint = fromJSON(entData.entities.PathPoints[0])
-		console.log(targetPoint.customFields.Point);
+		const startPoint = ldtkSimpleJSON(entData.entities.Start_Point[0]);
+		const targetPoint = ldtkSimpleJSON(entData.entities.PathPoints[0]);
+		console.log(targetPoint);
 
-		this.startPosition = new Point(
-			startPoint.x,
-			startPoint.y
-		);
+		this.startPosition = new Point(startPoint.x, startPoint.y);
 
 		for (let i = 0; i < targetPoint.customFields.Point.length; i++) {
-			this.targetPosition.push(new Point(targetPoint.customFields.Point[i].cx * targetPoint.width, targetPoint.customFields.Point[i].cy * targetPoint.height));
+			this.targetPosition.push(new Point(targetPoint.customFields.Point[i].cx, targetPoint.customFields.Point[i].cy));
 		}
-		
+
 		this.waypointRadius = 100;
-
-
 
 		this.targetPosition.forEach((target) => {
 			const aux = new Graphics();
@@ -67,26 +57,28 @@ export class MainBoatScene extends PixiScene {
 			this.map.addChild(aux);
 		});
 
-		this.boat = new Boat(150, 3, 0.1, 500, 1, "ship1");
-		this.boat.position.set(this.startPosition.x, this.startPosition.y);
-
-		this.boat1 = new Boat(180, 2, 0.1,  550, 2, "ship2");
-		this.boat1.position.set(this.startPosition.x + 80, this.startPosition.y);
-
-		this.boat2 = new Boat(130, 7, 0.1,  580, 3, "ship3");
-		this.boat2.position.set(this.startPosition.x + 160, this.startPosition.y);
-
-		this.boat3 = new Boat(120, 10, 0.1, 650, 4, "ship4");
-		this.boat3.position.set(this.startPosition.x + 240, this.startPosition.y);
-
-		this.boats.push(this.boat, this.boat1, this.boat2, this.boat3);
-
 		this.tilingWaves = new TilingSprite(Texture.from("waves"), 1280, 720);
 
 		this.sand = HitPoly.makeBox(this.tilingWaves.x, this.tilingWaves.height * 0.25, this.tilingWaves.width, 10);
 		this.gameContainer.sortableChildren = true;
-		this.gameContainer.addChild(this.tilingWaves, this.map, this.sand, this.boat, this.boat1, this.boat2, this.boat3);
+		this.gameContainer.addChild(this.tilingWaves, this.map, this.sand);
 
+		for (let i = 0; i < 4; i++) {
+			const boatData = ldtkSimpleJSON(entData.entities.Boats[i]);
+			console.log(boatData);
+			const boat = new Boat(
+				boatData.customFields.MaxSpeed,
+				boatData.customFields.acceleration,
+				boatData.customFields.deceleration,
+				boatData.customFields.turnSmooth,
+				boatData.customFields.player,
+				boatData.customFields.imgName
+			);
+
+			boat.position.set(this.startPosition.x + 80 * i, this.startPosition.y);
+			this.boats.push(boat);
+			this.addChild(boat);
+		}
 		const countdown = new Timer();
 		countdown
 			.to(3500)

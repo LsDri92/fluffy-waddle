@@ -11,7 +11,7 @@
 	"iid": "7fe52160-c210-11ef-bcba-611cb4c15686",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 43,
+	"nextUid": 50,
 	"identifierStyle": "Capitalize",
 	"toc": [ {
 		"identifier": "Start_Point",
@@ -29,8 +29,8 @@
 			"worldIid": "7fe54870-c210-11ef-bcba-e52188d754dc",
 			"levelIid": "7fe56f80-c210-11ef-bcba-41ed862337cc",
 			"layerIid": "aa26ad10-c210-11ef-bcba-a7040a52f2bd",
-			"entityIid": "0890c020-c210-11ef-bcba-b3982c088153"
-		}, "worldX": 1032, "worldY": 296, "widPx": 16, "heiPx": 16, "fields" : {} }]
+			"entityIid": "9eeac4e0-e920-11ef-ae04-3d8709877cf3"
+		}, "worldX": 800, "worldY": 275, "widPx": 16, "heiPx": 16, "fields" : {} }]
 	} ],
 	"worldLayout": "Free",
 	"worldGridWidth": 256,
@@ -66,7 +66,7 @@
 			"uid": 37,
 			"doc": null,
 			"uiColor": null,
-			"gridSize": 16,
+			"gridSize": 1,
 			"guideGridWid": 0,
 			"guideGridHei": 0,
 			"displayOpacity": 1,
@@ -377,6 +377,264 @@
 					"tilesetUid": null
 				}
 			]
+		},
+		{
+			"identifier": "Boats",
+			"uid": 43,
+			"tags": [],
+			"exportToToc": false,
+			"allowOutOfBounds": false,
+			"doc": null,
+			"width": 50,
+			"height": 25,
+			"resizableX": false,
+			"resizableY": false,
+			"minWidth": null,
+			"maxWidth": null,
+			"minHeight": null,
+			"maxHeight": null,
+			"keepAspectRatio": false,
+			"tileOpacity": 1,
+			"fillOpacity": 1,
+			"lineOpacity": 1,
+			"hollow": false,
+			"color": "#E4A672",
+			"renderMode": "Rectangle",
+			"showName": true,
+			"tilesetId": null,
+			"tileRenderMode": "FitInside",
+			"tileRect": null,
+			"uiTileRect": null,
+			"nineSliceBorders": [],
+			"maxCount": 0,
+			"limitScope": "PerLevel",
+			"limitBehavior": "MoveLastOne",
+			"pivotX": 0.5,
+			"pivotY": 0.5,
+			"fieldDefs": [
+				{
+					"identifier": "MaxSpeed",
+					"doc": null,
+					"__type": "Int",
+					"uid": 44,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [150] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "acceleration",
+					"doc": null,
+					"__type": "Int",
+					"uid": 46,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [5] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "deceleration",
+					"doc": null,
+					"__type": "Float",
+					"uid": 45,
+					"type": "F_Float",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Float", "params": [0.1] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "turnSmooth",
+					"doc": null,
+					"__type": "Int",
+					"uid": 47,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [500] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "player",
+					"doc": null,
+					"__type": "Int",
+					"uid": 48,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [1] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				},
+				{
+					"identifier": "imgName",
+					"doc": null,
+					"__type": "String",
+					"uid": 49,
+					"type": "F_String",
+					"isArray": false,
+					"canBeNull": true,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": null,
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -427,9 +685,9 @@
 				{
 					"__identifier": "Entities",
 					"__type": "Entities",
-					"__cWid": 80,
-					"__cHei": 45,
-					"__gridSize": 16,
+					"__cWid": 1280,
+					"__cHei": 720,
+					"__gridSize": 1,
 					"__opacity": 1,
 					"__pxTotalOffsetX": 0,
 					"__pxTotalOffsetY": 0,
@@ -450,7 +708,7 @@
 					"entityInstances": [
 						{
 							"__identifier": "Start_Point",
-							"__grid": [3,11],
+							"__grid": [56,184],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
@@ -466,7 +724,7 @@
 						},
 						{
 							"__identifier": "EndPoint",
-							"__grid": [0,44],
+							"__grid": [8,712],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
@@ -481,47 +739,201 @@
 							"__worldY": 712
 						},
 						{
+							"__identifier": "Boats",
+							"__grid": [88,216],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "bc2e8880-e920-11ef-ae04-7b4f832b155d",
+							"width": 50,
+							"height": 25,
+							"defUid": 43,
+							"px": [88,216],
+							"fieldInstances": [
+								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 150, "__tile": null, "defUid": 44, "realEditorValues": [] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 5, "__tile": null, "defUid": 46, "realEditorValues": [] },
+								{ "__identifier": "deceleration", "__type": "Float", "__value": 0.1, "__tile": null, "defUid": 45, "realEditorValues": [] },
+								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 500, "__tile": null, "defUid": 47, "realEditorValues": [] },
+								{ "__identifier": "player", "__type": "Int", "__value": 1, "__tile": null, "defUid": 48, "realEditorValues": [] },
+								{ "__identifier": "imgName", "__type": "String", "__value": "ship1", "__tile": null, "defUid": 49, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["ship1"]
+								}] }
+							],
+							"__worldX": 88,
+							"__worldY": 216
+						},
+						{
+							"__identifier": "Boats",
+							"__grid": [88,264],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "be63b800-e920-11ef-ae04-a312acb740e1",
+							"width": 50,
+							"height": 25,
+							"defUid": 43,
+							"px": [88,264],
+							"fieldInstances": [
+								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 180, "__tile": null, "defUid": 44, "realEditorValues": [{ "id": "V_Int", "params": [180] }] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 7, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [7] }] },
+								{ "__identifier": "deceleration", "__type": "Float", "__value": 0.1, "__tile": null, "defUid": 45, "realEditorValues": [] },
+								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 800, "__tile": null, "defUid": 47, "realEditorValues": [{ "id": "V_Int", "params": [800] }] },
+								{ "__identifier": "player", "__type": "Int", "__value": 2, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
+								{ "__identifier": "imgName", "__type": "String", "__value": "ship2", "__tile": null, "defUid": 49, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["ship2"]
+								}] }
+							],
+							"__worldX": 88,
+							"__worldY": 264
+						},
+						{
+							"__identifier": "Boats",
+							"__grid": [88,312],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "bfa1dd50-e920-11ef-ae04-894f057f9dc7",
+							"width": 50,
+							"height": 25,
+							"defUid": 43,
+							"px": [88,312],
+							"fieldInstances": [
+								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 200, "__tile": null, "defUid": 44, "realEditorValues": [{ "id": "V_Int", "params": [200] }] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 4, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+								{ "__identifier": "deceleration", "__type": "Float", "__value": 0.1, "__tile": null, "defUid": 45, "realEditorValues": [] },
+								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 380, "__tile": null, "defUid": 47, "realEditorValues": [{ "id": "V_Int", "params": [380] }] },
+								{ "__identifier": "player", "__type": "Int", "__value": 3, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
+								{ "__identifier": "imgName", "__type": "String", "__value": "ship3", "__tile": null, "defUid": 49, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["ship3"]
+								}] }
+							],
+							"__worldX": 88,
+							"__worldY": 312
+						},
+						{
+							"__identifier": "Boats",
+							"__grid": [88,360],
+							"__pivot": [0.5,0.5],
+							"__tags": [],
+							"__tile": null,
+							"__smartColor": "#E4A672",
+							"iid": "c08b52f0-e920-11ef-ae04-8f9ea02690b9",
+							"width": 50,
+							"height": 25,
+							"defUid": 43,
+							"px": [88,360],
+							"fieldInstances": [
+								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 130, "__tile": null, "defUid": 44, "realEditorValues": [{ "id": "V_Int", "params": [130] }] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 15, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [15] }] },
+								{ "__identifier": "deceleration", "__type": "Float", "__value": 0.1, "__tile": null, "defUid": 45, "realEditorValues": [] },
+								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 500, "__tile": null, "defUid": 47, "realEditorValues": [] },
+								{ "__identifier": "player", "__type": "Int", "__value": 4, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },
+								{ "__identifier": "imgName", "__type": "String", "__value": "ship4", "__tile": null, "defUid": 49, "realEditorValues": [{
+									"id": "V_String",
+									"params": ["ship4"]
+								}] }
+							],
+							"__worldX": 88,
+							"__worldY": 360
+						},
+						{
 							"__identifier": "PathPoints",
-							"__grid": [64,18],
+							"__grid": [800,275],
 							"__pivot": [0.5,0.5],
 							"__tags": [],
 							"__tile": null,
 							"__smartColor": "#EAD4AA",
-							"iid": "0890c020-c210-11ef-bcba-b3982c088153",
+							"iid": "9eeac4e0-e920-11ef-ae04-3d8709877cf3",
 							"width": 16,
 							"height": 16,
 							"defUid": 36,
-							"px": [1032,296],
+							"px": [800,275],
 							"fieldInstances": [{ "__identifier": "Point", "__type": "Array<Point>", "__value": [
-								{ "cx": 75, "cy": 27 },
-								{ "cx": 12, "cy": 27 },
-								{ "cx": 26, "cy": 37 },
-								{ "cx": 74, "cy": 37 },
-								{ "cx": 6, "cy": 20 }
+								{ "cx": 823, "cy": 274 },
+								{ "cx": 1057, "cy": 233 },
+								{ "cx": 949, "cy": 424 },
+								{ "cx": 435, "cy": 420 },
+								{ "cx": 162, "cy": 428 },
+								{ "cx": 105, "cy": 547 },
+								{ "cx": 273, "cy": 588 },
+								{ "cx": 448, "cy": 525 },
+								{ "cx": 671, "cy": 573 },
+								{ "cx": 855, "cy": 511 },
+								{ "cx": 999, "cy": 571 },
+								{ "cx": 1119, "cy": 522 },
+								{ "cx": 1189, "cy": 614 },
+								{ "cx": 138, "cy": 628 },
+								{ "cx": 151, "cy": 298 }
 							], "__tile": null, "defUid": 38, "realEditorValues": [
 								{
 									"id": "V_String",
-									"params": ["75,27"]
+									"params": ["823,274"]
 								},
 								{
 									"id": "V_String",
-									"params": ["12,27"]
+									"params": ["1057,233"]
 								},
 								{
 									"id": "V_String",
-									"params": ["26,37"]
+									"params": ["949,424"]
 								},
 								{
 									"id": "V_String",
-									"params": ["74,37"]
+									"params": ["435,420"]
 								},
 								{
 									"id": "V_String",
-									"params": ["6,20"]
+									"params": ["162,428"]
+								},
+								{
+									"id": "V_String",
+									"params": ["105,547"]
+								},
+								{
+									"id": "V_String",
+									"params": ["273,588"]
+								},
+								{
+									"id": "V_String",
+									"params": ["448,525"]
+								},
+								{
+									"id": "V_String",
+									"params": ["671,573"]
+								},
+								{
+									"id": "V_String",
+									"params": ["855,511"]
+								},
+								{
+									"id": "V_String",
+									"params": ["999,571"]
+								},
+								{
+									"id": "V_String",
+									"params": ["1119,522"]
+								},
+								{
+									"id": "V_String",
+									"params": ["1189,614"]
+								},
+								{
+									"id": "V_String",
+									"params": ["138,628"]
+								},
+								{
+									"id": "V_String",
+									"params": ["151,298"]
 								}
 							] }],
-							"__worldX": 1032,
-							"__worldY": 296
+							"__worldX": 800,
+							"__worldY": 275
 						}
 					]
 				},

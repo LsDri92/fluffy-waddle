@@ -35,20 +35,8 @@ export class Entities implements IEntities {
 		this.color = color;
 		this.customFields = customFields;
 	}
-
-
 }
 
-export function fromJSON(data: any): Entities {
-	return new Entities(
-		data.id,
-		data.iid,
-		data.layer,
-		data.x,
-		data.y,
-		data.width,
-		data.height,
-		data.color,
-		data.customFields
-	);
+export function ldtkSimpleJSON(data: any): Entities {
+	return new Entities(data.id, data.iid, data.layer, data.x, data.y, data.width, data.height, data.color, data.customFields);
 }
