@@ -27,6 +27,7 @@
   "devDependencies": {
     "@killabunnies/eslint-config": "^1.0.5",
     "@types/fontfaceobserver": "2.1.0",
+    "@types/node": "^22.13.4",
     "@types/sat": "^0.0.31",
     "@types/stats.js": "^0.17.0",
     "@types/webpack-env": "^1.17.0",

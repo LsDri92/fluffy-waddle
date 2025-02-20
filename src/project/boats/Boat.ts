@@ -6,7 +6,6 @@ export class Boat extends Container {
 	public acce: number;
 	public dece: number;
 	public currentSpeed: number;
-
 	public boat: Sprite;
 	public turnsSmooth: number;
 	private turnVelocity = { value: 0 };
@@ -29,6 +28,7 @@ export class Boat extends Container {
 		this.boat.scale.set(0.5);
 		this.boat.anchor.x = 0.5;
 		this.boat.anchor.y = 0;
+
 		const text = new Text(player.toString());
 		text.position.set(this.boat.x, this.boat.y);
 
@@ -39,46 +39,32 @@ export class Boat extends Container {
 
 	public turnBoat(targetPosition: Point, dt: number): void {
 		const pointToTarget = new Point(targetPosition.x - this.position.x, targetPosition.y - this.position.y);
-		const angleToTarget = Math.atan2(pointToTarget.y, pointToTarget.x); // Calcula el ángulo objetivo
+		const angleToTarget = Math.atan2(pointToTarget.y, pointToTarget.x);
 
-		// Asegura que el bote gire en la dirección más corta
 		let deltaAngle = angleToTarget - this.rotation;
-		deltaAngle = ((deltaAngle + Math.PI) % (2 * Math.PI)) - Math.PI; // Mantiene el ángulo en [-π, π]
+		deltaAngle = ((deltaAngle + Math.PI) % (2 * Math.PI)) - Math.PI;
 
-		// Aplica suavizado asegurando que el bote no sobrepase el ángulo objetivo
 		this.rotation = this.smoothDampAngle(this.rotation, this.rotation + deltaAngle, this.turnVelocity, this.turnsSmooth, dt);
 	}
 	public moveTowardTarget(targetPosition: Point, deltaTime: number): number {
-		// Actualiza la rotación para que el bote apunte hacia el objetivo.
 		this.turnBoat(targetPosition, deltaTime);
 
-		// Calcula el vector y la distancia al objetivo.
 		const dx = targetPosition.x - this.position.x;
 		const dy = targetPosition.y - this.position.y;
 		const distanceToTarget = Math.sqrt(dx * dx + dy * dy);
 
-		// Definir un umbral a partir del cual se acelera o desacelera.
-		const threshold = 250;
+		const threshold = 120;
 
-		// Actualiza la velocidad actual:
-		// Si el bote está lejos, se acelera; si está cerca, se desacelera.
 		if (distanceToTarget > threshold) {
-			// Acelera incrementando currentSpeed según acce y deltaTime.
-			this.currentSpeed += (this.acce * deltaTime) / 60;
+			this.currentSpeed += this.acce * deltaTime;
 		} else {
-			// Desacelera disminuyendo currentSpeed según dece y deltaTime.
 			this.currentSpeed -= (this.dece * deltaTime) / 60;
 		}
 
-		// Limita la velocidad entre 0 y maxSpeed.
-		if (this.currentSpeed < this.maxSpeed * 0.4) {
-			this.currentSpeed += (this.acce * deltaTime) / 60;
-		}
 		if (this.currentSpeed > this.maxSpeed) {
 			this.currentSpeed = this.maxSpeed;
 		}
 
-		// Actualiza la posición del bote basándose en su rotación (la dirección se obtiene de Math.cos y Math.sin)
 		this.position.x += Math.cos(this.rotation) * this.currentSpeed * deltaTime;
 		this.position.y += Math.sin(this.rotation) * this.currentSpeed * deltaTime;
 

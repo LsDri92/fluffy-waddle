@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 export interface ILDtkMap {
 	__header__: LDtkHeader;
 	iid: string;
@@ -166,7 +167,6 @@ export interface Coordinate {
 	cx: number;
 	cy: number;
 }
-
 
 export function parseLDtkJson(raw: any): ILDtkMap {
 	return {

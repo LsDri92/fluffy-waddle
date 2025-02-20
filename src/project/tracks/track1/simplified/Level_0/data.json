@@ -28,19 +28,6 @@
 				"customFields" : {}
 			}
 		],
-		"EndPoint": [
-			{
-				"id": "EndPoint",
-				"iid": "c1548390-c210-11ef-bcba-25eb622bd4a2",
-				"layer": "Entities",
-				"x": 8,
-				"y": 712,
-				"width": 16,
-				"height": 16,
-				"color": 14120515,
-				"customFields" : {}
-			}
-		],
 		"Boats": [
 			{
 				"id": "Boats",
@@ -53,9 +40,9 @@
 				"color": 14984818,
 				"customFields": {
 					"MaxSpeed": 150,
-					"deceleration": 0.1,
-					"acceleration": 5,
-					"turnSmooth": 500,
+					"deceleration": 50,
+					"acceleration": 60,
+					"turnSmooth": 420,
 					"player": 1,
 					"imgName": "ship1"
 				}
@@ -72,8 +59,8 @@
 				"customFields": {
 					"MaxSpeed": 180,
 					"deceleration": 0.1,
-					"acceleration": 7,
-					"turnSmooth": 800,
+					"acceleration": 60,
+					"turnSmooth": 250,
 					"player": 2,
 					"imgName": "ship2"
 				}
@@ -89,8 +76,8 @@
 				"color": 14984818,
 				"customFields": {
 					"MaxSpeed": 200,
-					"deceleration": 0.1,
-					"acceleration": 4,
+					"deceleration": 1,
+					"acceleration": 100,
 					"turnSmooth": 380,
 					"player": 3,
 					"imgName": "ship3"
@@ -107,8 +94,8 @@
 				"color": 14984818,
 				"customFields": {
 					"MaxSpeed": 130,
-					"deceleration": 0.1,
-					"acceleration": 15,
+					"deceleration": 0.01,
+					"acceleration": 60,
 					"turnSmooth": 500,
 					"player": 4,
 					"imgName": "ship4"
@@ -118,74 +105,50 @@
 		"PathPoints": [
 			{
 				"id": "PathPoints",
-				"iid": "9eeac4e0-e920-11ef-ae04-3d8709877cf3",
+				"iid": "ab04bb70-e920-11ef-867d-099ed7377222",
 				"layer": "Entities",
-				"x": 800,
-				"y": 275,
+				"x": 537,
+				"y": 302,
 				"width": 16,
 				"height": 16,
 				"color": 15389866,
 				"customFields": {
 					"Point": [
 						{
-							"cx": 823,
-							"cy": 274
+							"cx": 565,
+							"cy": 303
 						},
 						{
-							"cx": 1057,
-							"cy": 233
+							"cx": 1078,
+							"cy": 248
 						},
 						{
-							"cx": 949,
-							"cy": 424
+							"cx": 1152,
+							"cy": 472
 						},
 						{
-							"cx": 435,
-							"cy": 420
+							"cx": 656,
+							"cy": 469
 						},
 						{
-							"cx": 162,
-							"cy": 428
+							"cx": 107,
+							"cy": 523
 						},
 						{
-							"cx": 105,
-							"cy": 547
+							"cx": 330,
+							"cy": 619
 						},
 						{
-							"cx": 273,
-							"cy": 588
+							"cx": 911,
+							"cy": 629
 						},
 						{
-							"cx": 448,
-							"cy": 525
+							"cx": 1155,
+							"cy": 558
 						},
 						{
-							"cx": 671,
-							"cy": 573
-						},
-						{
-							"cx": 855,
-							"cy": 511
-						},
-						{
-							"cx": 999,
-							"cy": 571
-						},
-						{
-							"cx": 1119,
-							"cy": 522
-						},
-						{
-							"cx": 1189,
-							"cy": 614
-						},
-						{
-							"cx": 138,
-							"cy": 628
-						},
-						{
-							"cx": 151,
-							"cy": 298
+							"cx": 159,
+							"cy": 286
 						}
 					]
 				}

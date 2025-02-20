@@ -90,10 +90,10 @@ export class LdtkMap extends Container {
 					break;
 
 				case "PathPoints":
-					entitySprite.beginFill(0xff00ff);
-					entitySprite.drawCircle(0, 0, 5);
-					entitySprite.endFill();
-					entitySprite.position.set(entity.px[0], entity.px[1]);
+					// entitySprite.beginFill(0xff00ff);
+					// entitySprite.drawCircle(0, 0, 5);
+					// entitySprite.endFill();
+					// entitySprite.position.set(entity.px[0], entity.px[1]);
 					break;
 
 				default:
