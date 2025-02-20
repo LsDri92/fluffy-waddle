@@ -18,8 +18,8 @@ export class Boat extends Container {
 		this.id = player;
 		this.currentSpeed = 0;
 		this.maxSpeed = maxSpeed * 0.001;
-		this.acce = acceleration * 0.001;
-		this.dece = deceleration * 0.001;
+		this.acce = acceleration * 0.0001;
+		this.dece = deceleration * 0.0001;
 		this.turnsSmooth = turnSmooth;
 		this.rotation = -5;
 
@@ -58,12 +58,13 @@ export class Boat extends Container {
 		if (distanceToTarget > threshold) {
 			this.currentSpeed += this.acce * deltaTime;
 		} else {
-			this.currentSpeed -= (this.dece * deltaTime) / 60;
+			this.currentSpeed -= this.dece * deltaTime;
 		}
 
-		if (this.currentSpeed > this.maxSpeed) {
-			this.currentSpeed = this.maxSpeed;
-		}
+		// Evitar velocidad negativa
+		this.currentSpeed = Math.max(0, this.currentSpeed);
+		// Limitar la velocidad al máximo
+		this.currentSpeed = Math.min(this.currentSpeed, this.maxSpeed);
 
 		this.position.x += Math.cos(this.rotation) * this.currentSpeed * deltaTime;
 		this.position.y += Math.sin(this.rotation) * this.currentSpeed * deltaTime;

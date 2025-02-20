@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { Container, Graphics, Point, Texture, TilingSprite } from "pixi.js";
 import { PixiScene } from "../../engine/scenemanager/scenes/PixiScene";
 import { Boat } from "./Boat";
@@ -33,8 +32,6 @@ export class MainBoatScene extends PixiScene {
 		this.addChild(this.gameContainer);
 
 		const parsedMap: ILDtkMap = parseLDtkJson(rawData);
-
-		
 
 		this.map = new LdtkMap(parsedMap);
 		const startPoint = ldtkSimpleJSON(entData.entities.Start_Point[0]);

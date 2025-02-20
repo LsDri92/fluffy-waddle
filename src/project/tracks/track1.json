@@ -736,8 +736,8 @@
 							"px": [88,216],
 							"fieldInstances": [
 								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 150, "__tile": null, "defUid": 44, "realEditorValues": [] },
-								{ "__identifier": "acceleration", "__type": "Int", "__value": 60, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [60] }] },
-								{ "__identifier": "deceleration", "__type": "Float", "__value": 50, "__tile": null, "defUid": 45, "realEditorValues": [{ "id": "V_Float", "params": [50] }] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 1, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+								{ "__identifier": "deceleration", "__type": "Float", "__value": 1, "__tile": null, "defUid": 45, "realEditorValues": [{ "id": "V_Float", "params": [1] }] },
 								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 420, "__tile": null, "defUid": 47, "realEditorValues": [{ "id": "V_Int", "params": [420] }] },
 								{ "__identifier": "player", "__type": "Int", "__value": 1, "__tile": null, "defUid": 48, "realEditorValues": [] },
 								{ "__identifier": "imgName", "__type": "String", "__value": "ship1", "__tile": null, "defUid": 49, "realEditorValues": [{
@@ -762,8 +762,8 @@
 							"px": [88,264],
 							"fieldInstances": [
 								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 180, "__tile": null, "defUid": 44, "realEditorValues": [{ "id": "V_Int", "params": [180] }] },
-								{ "__identifier": "acceleration", "__type": "Int", "__value": 60, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [60] }] },
-								{ "__identifier": "deceleration", "__type": "Float", "__value": 0.1, "__tile": null, "defUid": 45, "realEditorValues": [{ "id": "V_Float", "params": [0.1] }] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 5, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [5] }] },
+								{ "__identifier": "deceleration", "__type": "Float", "__value": 1, "__tile": null, "defUid": 45, "realEditorValues": [{ "id": "V_Float", "params": [1] }] },
 								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 250, "__tile": null, "defUid": 47, "realEditorValues": [{ "id": "V_Int", "params": [250] }] },
 								{ "__identifier": "player", "__type": "Int", "__value": 2, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 								{ "__identifier": "imgName", "__type": "String", "__value": "ship2", "__tile": null, "defUid": 49, "realEditorValues": [{
@@ -788,8 +788,8 @@
 							"px": [88,312],
 							"fieldInstances": [
 								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 200, "__tile": null, "defUid": 44, "realEditorValues": [{ "id": "V_Int", "params": [200] }] },
-								{ "__identifier": "acceleration", "__type": "Int", "__value": 100, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [100] }] },
-								{ "__identifier": "deceleration", "__type": "Float", "__value": 1, "__tile": null, "defUid": 45, "realEditorValues": [{ "id": "V_Float", "params": [1] }] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 1, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [1] }] },
+								{ "__identifier": "deceleration", "__type": "Float", "__value": 3, "__tile": null, "defUid": 45, "realEditorValues": [{ "id": "V_Float", "params": [3] }] },
 								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 380, "__tile": null, "defUid": 47, "realEditorValues": [{ "id": "V_Int", "params": [380] }] },
 								{ "__identifier": "player", "__type": "Int", "__value": 3, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [3] }] },
 								{ "__identifier": "imgName", "__type": "String", "__value": "ship3", "__tile": null, "defUid": 49, "realEditorValues": [{
@@ -814,7 +814,7 @@
 							"px": [88,360],
 							"fieldInstances": [
 								{ "__identifier": "MaxSpeed", "__type": "Int", "__value": 130, "__tile": null, "defUid": 44, "realEditorValues": [{ "id": "V_Int", "params": [130] }] },
-								{ "__identifier": "acceleration", "__type": "Int", "__value": 60, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [60] }] },
+								{ "__identifier": "acceleration", "__type": "Int", "__value": 2, "__tile": null, "defUid": 46, "realEditorValues": [{ "id": "V_Int", "params": [2] }] },
 								{ "__identifier": "deceleration", "__type": "Float", "__value": 0.01, "__tile": null, "defUid": 45, "realEditorValues": [{ "id": "V_Float", "params": [0.01] }] },
 								{ "__identifier": "turnSmooth", "__type": "Int", "__value": 500, "__tile": null, "defUid": 47, "realEditorValues": [] },
 								{ "__identifier": "player", "__type": "Int", "__value": 4, "__tile": null, "defUid": 48, "realEditorValues": [{ "id": "V_Int", "params": [4] }] },

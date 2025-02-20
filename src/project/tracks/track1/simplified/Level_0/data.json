@@ -40,8 +40,8 @@
 				"color": 14984818,
 				"customFields": {
 					"MaxSpeed": 150,
-					"deceleration": 50,
-					"acceleration": 60,
+					"deceleration": 1,
+					"acceleration": 1,
 					"turnSmooth": 420,
 					"player": 1,
 					"imgName": "ship1"
@@ -58,8 +58,8 @@
 				"color": 14984818,
 				"customFields": {
 					"MaxSpeed": 180,
-					"deceleration": 0.1,
-					"acceleration": 60,
+					"deceleration": 1,
+					"acceleration": 5,
 					"turnSmooth": 250,
 					"player": 2,
 					"imgName": "ship2"
@@ -76,8 +76,8 @@
 				"color": 14984818,
 				"customFields": {
 					"MaxSpeed": 200,
-					"deceleration": 1,
-					"acceleration": 100,
+					"deceleration": 3,
+					"acceleration": 1,
 					"turnSmooth": 380,
 					"player": 3,
 					"imgName": "ship3"
@@ -95,7 +95,7 @@
 				"customFields": {
 					"MaxSpeed": 130,
 					"deceleration": 0.01,
-					"acceleration": 60,
+					"acceleration": 2,
 					"turnSmooth": 500,
 					"player": 4,
 					"imgName": "ship4"
