@@ -23,7 +23,7 @@ export class Camera2D {
 	 */
 	public anchoredOnCharacterWithLerp(world: Container, character: Container, lerpTime: number): void {
 		world.pivot.x = lerp(character.x, world.pivot.x, lerpTime);
-		world.pivot.y = lerp(character.y * 0.8, world.pivot.y, lerpTime);
+		world.pivot.y = lerp(character.y, world.pivot.y, lerpTime);
 	}
 
 	/**

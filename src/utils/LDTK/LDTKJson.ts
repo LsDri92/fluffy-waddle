@@ -160,7 +160,7 @@ export interface EntityInstance {
 export interface FieldInstance {
 	__identifier: string;
 	__type: string;
-	__value: Coordinate[];
+	__value: any[];
 }
 
 export interface Coordinate {

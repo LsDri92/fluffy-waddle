@@ -46,6 +46,7 @@ export class Boat extends Container {
 
 		this.rotation = this.smoothDampAngle(this.rotation, this.rotation + deltaAngle, this.turnVelocity, this.turnsSmooth, dt);
 	}
+
 	public moveTowardTarget(targetPosition: Point, deltaTime: number): number {
 		this.turnBoat(targetPosition, deltaTime);
 
@@ -61,9 +62,8 @@ export class Boat extends Container {
 			this.currentSpeed -= this.dece * deltaTime;
 		}
 
-		// Evitar velocidad negativa
 		this.currentSpeed = Math.max(0, this.currentSpeed);
-		// Limitar la velocidad al máximo
+
 		this.currentSpeed = Math.min(this.currentSpeed, this.maxSpeed);
 
 		this.position.x += Math.cos(this.rotation) * this.currentSpeed * deltaTime;
