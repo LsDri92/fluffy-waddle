@@ -1,12 +1,14 @@
 import { Container, BaseTexture, Sprite, Graphics } from "pixi.js";
 import type { ILDtkMap, LevelData, LayerInstance } from "./LDTKJson";
 import { GetTileTexture } from "./Tileset";
+import { Boat } from "../../project/boats/Boat";
 
 export class LdtkMap extends Container {
 	public static readonly BUNDLES = ["package-1"];
 	public mapData: ILDtkMap;
 	private tilesetTextures: Map<number, BaseTexture> = new Map();
 	public waveTiles: Sprite[] = [];
+	public boats: Boat[] = [];
 
 	constructor(mapData: ILDtkMap) {
 		super();
@@ -90,12 +92,27 @@ export class LdtkMap extends Container {
 					break;
 
 				case "PathPoints":
-					// entitySprite.beginFill(0xff00ff);
-					// entitySprite.drawCircle(0, 0, 5);
-					// entitySprite.endFill();
-					// entitySprite.position.set(entity.px[0], entity.px[1]);
+					entitySprite.beginFill(0xff00ff);
+					entitySprite.drawCircle(0, 0, 5);
+					entitySprite.endFill();
+					entitySprite.position.set(entity.px[0], entity.px[1]);
 					break;
 
+				case "Boats":
+					for (let i = 0; i < 4; i++) {
+						const boat = new Boat(
+							entity.fieldInstances[i].__value[0],
+							entity.fieldInstances[i].__value[1],
+							entity.fieldInstances[i].__value[2],
+							entity.fieldInstances[i].__value[3],
+							entity.fieldInstances[i].__value[4],
+							entity.fieldInstances[i].__value[5]
+						);
+
+						this.boats.push(boat);
+						parent.addChild(boat);
+					}
+					break;
 				default:
 					break;
 			}
