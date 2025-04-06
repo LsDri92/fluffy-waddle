@@ -10,7 +10,8 @@ import { PixiRenderer } from "./engine/scenemanager/renderers/PixiRenderer";
 import { settings } from "pixi.js";
 import { DEFAULTS } from "tweedle.js";
 import { Box2DHelper } from "./engine/utils/Box2DHelper";
-import { MainBoatScene } from "./project/boats/MainBoatScene";
+import { Engine, Runner } from "matter-js";
+import { GameScene } from "./project/GardenersAdventure/GameScene";
 
 settings.RENDER_OPTIONS.hello = false;
 
@@ -49,6 +50,11 @@ if (DEBUG) {
 	console.groupEnd();
 }
 
+// Configurar el motor de físicas Matter.js
+export const engine = Engine.create();
+export const runner = Runner.create();
+Runner.run(runner, engine);
+
 window.addEventListener("resize", () => {
 	const w = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
 	const h = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
@@ -59,7 +65,7 @@ window.dispatchEvent(new Event("resize"));
 
 const initializeCb = function (): void {
 	// Manager.changeScene(import(/* webpackPrefetch: true */ "./project/scenes/LoaderScene"));
-	Manager.changeScene(MainBoatScene);
+	Manager.changeScene(GameScene);
 };
 
 if (ALL_FLAGS.USE_BOX2D) {

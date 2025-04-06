@@ -2,5 +2,6 @@
 declare namespace GlobalMixins {
 	interface DisplayObjectEvents {
 		"custom event here": any;
+		createnewenemy: any;
 	}
 }
